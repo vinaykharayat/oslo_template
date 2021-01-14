@@ -46,24 +46,28 @@ if (slider.children("li").length > 1) {
         });
     });
 
-    $(".sliderControlContainer input:radio").click(function(){
+    $(".sliderControlContainer input:radio").click(function () {
+        let clicks = currentR - $(this).val()
+        console.log(clicks)
+        if (clicks >= 0) {
+            for (let i = 0; i < clicks; i++) {
+                $("#btn-prev").trigger("click");
+            }
+        } else {
+            for (let i = clicks; i < 0; i++) {
+                $("#btn-next").trigger("click");
+            }
+        }
+
+    });
+    $(".sliderControlContainer input:radio").hover(function () {
         if (timer) {
             clearInterval(timer);
             timer = null;
         }
-        let clicks = currentR - $(this).val()
-        console.log(clicks)
-        if(clicks>=0){
-            for(let i = 0; i<clicks; i++){
-                $("#btn-prev").trigger("click");
-            }
-        }else{
-            for(let i = clicks; i<0; i++){
-            $("#btn-next").trigger("click");
-        }
-        }
-        
-    })
+    }, function () {
+        autoplay();
+    });
 }
 
 // Autoplay
