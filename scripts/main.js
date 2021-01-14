@@ -10,7 +10,7 @@ var currentR = 0
 // let's add the pagination buttons
 if (slider.children("li").length > 1) {
     for (var i = 0; i < slider.children("li").length; i++) {
-        $("#sliderControlContainer").append("<input style=\"margin:10px 10px\"type=\"radio\" class=\"sliderController\" name=\"sliderControl\" value=\"" + i + "\">")
+        $(".sliderControlContainer").append("<input style=\"margin:10px 10px\"type=\"radio\" class=\"sliderController\" name=\"sliderControl\" value=\"" + i + "\">")
     }
     $("input[name=sliderControl][value=" + currentR + "]").prop('checked', true);
 
@@ -45,6 +45,25 @@ if (slider.children("li").length > 1) {
             slider.css("left", 0);
         });
     });
+
+    $(".sliderControlContainer input:radio").click(function(){
+        if (timer) {
+            clearInterval(timer);
+            timer = null;
+        }
+        let clicks = currentR - $(this).val()
+        console.log(clicks)
+        if(clicks>=0){
+            for(let i = 0; i<clicks; i++){
+                $("#btn-prev").trigger("click");
+            }
+        }else{
+            for(let i = clicks; i<0; i++){
+            $("#btn-next").trigger("click");
+        }
+        }
+        
+    })
 }
 
 // Autoplay
@@ -82,5 +101,4 @@ function autoplay() {
 function adjust() {
     item_width = slider.parent().outerWidth();
     slider.children("li").width(item_width).parent().width(item_width * slider.children("li").length);
-}
-
+};

@@ -67,10 +67,12 @@
     color: white;
 }
 
-#sliderControlContainer{
+.sliderControlContainer{
     display: block;
-    position: absolute;
-    right:  50%;
+    /* position: absolute; */
+    /* right:  50%; */
+    margin: auto;
+    border: solid;
 }
 
 .sliderContainer {
