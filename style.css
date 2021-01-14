@@ -68,11 +68,11 @@
 }
 
 .sliderControlContainer{
-    display: block;
+    display: flex;
+    justify-content: center;
     /* position: absolute; */
     /* right:  50%; */
     margin: auto;
-    border: solid;
 }
 
 .sliderContainer {
